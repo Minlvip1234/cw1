@@ -1,0 +1,7 @@
+{
+  "name": "cw1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

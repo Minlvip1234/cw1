@@ -1,0 +1,89 @@
+.login-text11 {
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 45px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}   
+
+.login-text22 {
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 76px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}
+
+.login-text33 {
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}
+
+.login-text44 {
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 51px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}
+
+.login-text55 {
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 111px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}
+
+.login-text66 {
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 110px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}
+
+.login-text77 {
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 26px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}
+
+
+.txt
+{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+ion-content.backgroundk
+{    
+    --ion-background-color: #ada89e; 
+}
+
+.ll
+{
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 81px;
+    margin-right: 30px;
+    margin-top: 10%;
+    border-radius: 10%;
+}
+.pic
+{
+    margin-left: 25%;
+    margin-top: 15%;
+}
+
+
+.textdate1{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-top: 11%;
+    margin-left: 52px;
+}

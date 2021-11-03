@@ -1,0 +1,13 @@
+export interface RentHouse{
+    id?: number,
+    propertytype: string,
+    bedsroom: string,
+    dateOfBirth: string,
+    moneyRentPrice: string,
+    funitureType: string,
+    notes: string,
+    name:string,
+    note2: string,
+    picBlob: Blob,
+    optional: string
+}

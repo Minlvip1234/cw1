@@ -1,0 +1,92 @@
+
+.createForm
+{
+    width: 70px;
+    height: 80px;
+}
+
+.createFormBut
+{
+    --border-radius:30%;
+    width: 80px;
+    height: 90px;
+    margin-top: 60%;
+    margin-left: 28%;
+    margin-right: auto;
+}
+
+.createFormBut1
+{
+    --border-radius:30%;
+    width: 80px;
+    height: 90px;
+    margin-top: 60%;
+    margin-right: auto;
+    margin-left: 5%;
+}
+
+.createFormBut2
+{
+    --border-radius:30%;
+    width: 80px;
+    height: 90px;
+    margin-top: 10%;
+    margin-right: auto;
+    margin-left: 28%;
+}
+
+.createFormBut3
+{
+    --border-radius:30%;
+    width: 80px;
+    height: 90px;
+    margin-top: 10%;
+    margin-left: 5%;
+    margin-right: auto;
+}
+
+.text
+{
+    text-transform: initial;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 96px;
+}
+
+.text1
+{
+    text-transform: initial;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 37px;
+    margin-right: auto;
+}
+
+.text2
+{
+    text-transform: initial;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 94px;
+}
+
+.text3
+{
+    text-transform: initial;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 38px;
+    margin-right: auto;
+}
+
+
+ion-content.background
+{
+     
+    --background: none;
+    background-image: url('../imgs/OIP.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
