@@ -13,8 +13,6 @@ import { useHistory } from 'react-router';
 import { RentHouse } from '../model';
 import ReactAudioPlayer from 'react-audio-player';
 
-
-
 const CreateForm: React.FC = () => {
   var myPlayer: ReactAudioPlayer | null
   const [propertytype, setPropertytype] = useState('')
@@ -34,8 +32,6 @@ const CreateForm: React.FC = () => {
   var [arrayName2, setAllRental2] = useState(false)
 
   const history = useHistory()
-
-
   const options = {
     cssClass: 'my-custom-interface'
   };
@@ -48,7 +44,6 @@ const CreateForm: React.FC = () => {
     })
     setPictureURL(cameraPhoto.webPath!)
   }
-
 
   async function validation() {
     var result = await getAllRental() as RentHouse[]
@@ -110,8 +105,7 @@ const CreateForm: React.FC = () => {
     }
 
 
-    else if (propertytype.trim().length == 0 || bedsroom.trim().length == 0 || moneyRentPrice.trim().length == 0) 
-    {
+    else if (propertytype.trim().length == 0 || bedsroom.trim().length == 0 || moneyRentPrice.trim().length == 0) {
       navigator.vibrate(2500)
       return toast("Please fill all property, bedsroom and money")
     }
@@ -225,11 +219,7 @@ const CreateForm: React.FC = () => {
             <IonButton shape="round" fill="outline" onClick={takePicture}>Select Picture</IonButton>
           </IonItem>
         </IonItem>
-
-
         <ReactAudioPlayer src="assets\nhac.wav" ref={(element) => { myPlayer = element }} />
-
-
         <IonButton
           class="buttonnon"
           shape="round"
