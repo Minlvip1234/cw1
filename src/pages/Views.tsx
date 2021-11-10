@@ -1,10 +1,12 @@
 import { RefresherEventDetail } from '@ionic/core';
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonList, IonPage, IonRefresher, IonRefresherContent, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonList, IonPage, IonRefresher, IonRefresherContent, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import {  getRentalById, updateNewRent } from '../databaseHandler';
 import { RentHouse } from '../model';
 import './Views.css';
+import { people } from 'ionicons/icons'
+
 
 
 interface a {
@@ -26,12 +28,8 @@ const Views: React.FC = () => {
     var [lati, setLati] = useState('')
     var [long, setLong] = useState('')
     let arr14 = Array<string>();
-
     var [arr, setArr] = useState(arr14)
-  
 
-    
-  
     interface IdParam {
         id: string
     }
@@ -60,9 +58,7 @@ const Views: React.FC = () => {
             arr14:arr14
         }
         await updateNewRent(updateNew)
-
-        console.log(arr14)
-       
+        
     }
 
   
@@ -81,7 +77,7 @@ const Views: React.FC = () => {
         setFunitureType(resultFromDB.funitureType)
         setLati(resultFromDB.lati)
         setLong(resultFromDB.long)
-        setArr(resultFromDB.arr14)
+        setArr(resultFromDB.arr14.reverse())
     }
 
     
@@ -163,11 +159,11 @@ const Views: React.FC = () => {
                     <IonInput disabled value={optional} class="login-text77" ></IonInput>
                 </IonItem>
 
-                <IonItem  class ="textcre" lines="none">
+                <IonItem  class ="lat" lines="none">
                     <IonText>Latitude: </IonText>
                     <IonText class ="la">{lati}</IonText>
                 </IonItem>
-                <IonItem  class = "textcre" lines="none">
+                <IonItem  class = "lat" lines="none">
                     <IonText>Longitude: </IonText>
                     <IonText class = "long">{long}</IonText>
                 </IonItem>
@@ -212,19 +208,25 @@ const Views: React.FC = () => {
                         Up</IonButton>
                 </IonItem>
 
-
-
-                <IonItem></IonItem>
                 
-                <IonList >
+
+                <IonItem ></IonItem>
+                
+                <IonItem lines = "none">
+                    <IonText class="textcre">All comment here</IonText>
+                </IonItem>
+                <IonList>
                     {arr.map(c =>
-                       <IonItem>
-                           <IonText>{c}</IonText>
+                       <IonItem lines = "none" >
+                           <IonButton color="light" class="nm1">
+          <IonIcon class="nm" icon={people} size="small" slot="icon-only"></IonIcon>
+        </IonButton>
+                           <IonText class="textcre">{c}</IonText>
                        </IonItem>
                     )}
                 </IonList>
             
-             
+             <IonItem></IonItem>
 
 
             </IonContent>

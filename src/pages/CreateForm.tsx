@@ -113,43 +113,43 @@ const CreateForm: React.FC = () => {
 
     if (array == true) {
       array = false
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("Name has been created, try another name !!!")
     }
 
     else if (arrayName == true) {
       arrayName = false
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("Name must not have any number, please try again!")
     }
 
     else if (arrayName1 == true) {
       arrayName1 = false
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("Property must not have any number, please try again!")
     }
 
     else if (arrayName2 == true) {
       arrayName2 = false
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("Bedroom must not have any number, please try again!")
     }
 
 
     else if (propertytype.trim().length == 0 || bedsroom.trim().length == 0 || moneyRentPrice.trim().length == 0) {
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("Please fill all property, bedsroom and money")
     }
     else if (optional.trim().length == 0) {
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("You must choose 1 option")
     }
     else if (funitureType.trim().length == 0) {
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("You must choose 1 funished type")
     }
     else if (arrayName3 == true) {
-      navigator.vibrate(2500)
+      navigator.vibrate(1000)
       return toast("Price must be a numbers, please try again")
     }
     else {
@@ -222,14 +222,14 @@ const CreateForm: React.FC = () => {
         </IonItem>
 
         <IonItem  lines="none">
-          <IonButton color="primary" onClick={getLocation}>Get location</IonButton>
+          <IonButton class = "geo" color="primary" onClick={getLocation}>Get location</IonButton>
         </IonItem>
 
-        <IonItem class="textcre" lines="none">
+        <IonItem class="lat" lines="none">
           <IonText>Latitude: </IonText>
           <IonText class="la">{lati}</IonText>
         </IonItem>
-        <IonItem class="textcre" lines="none">
+        <IonItem class="lat" lines="none">
           <IonText>Longitude: </IonText>
           <IonText class="long">{long}</IonText>
         </IonItem>
@@ -260,15 +260,11 @@ const CreateForm: React.FC = () => {
           <IonText class="textcre">Picture</IonText>
         </IonItem>
         <IonItem class="pim" lines="none">
-
-
-
-
           <img src={pictureURL} width="150" height="120" />
-          <IonItem class="bui">
-            <IonButton shape="round" fill="outline" onClick={takePicture}>Select Picture</IonButton>
-          </IonItem>
+          <IonButton class ="bui" shape="round" fill="outline" onClick={takePicture}>Select Picture</IonButton>
         </IonItem>
+
+
         <ReactAudioPlayer src="assets\nhac.wav" ref={(element) => { myPlayer = element }} />
         <IonButton
           class="buttonnon"

@@ -126,3 +126,36 @@ ion-content.backgroundz
     right: 0;
     top: 50%;
   }
+
+  .bre
+  {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-top: 10%;
+      margin-left: 31px;
+  }
+
+  .bre1
+  {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-top: 10%;
+      margin-left: 25px;
+  }
+
+
+  .geo {
+    margin: auto;
+
+  }
+
+  .lat{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-top: 1%;
+    margin-left: 10px;
+      
+  }
+  
+  
+  

@@ -60,13 +60,13 @@ const Update: React.FC = () => {
                     <IonRefresherContent>
                     </IonRefresherContent>
                 </IonRefresher>
-                {allRental &&
+               
                     <IonList>
                         {allRental.map(c =>
                             <IonItem routerLink={'/Updated/' + c.id} button key={c.id}>{c.propertytype}</IonItem>
                         )}
                     </IonList>
-                }
+               
 
             </IonContent>
         </IonPage>

@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
 import { trash } from 'ionicons/icons'
 import { deleteRental, updateNewRent, getRentalById } from '../databaseHandler';
 import { RentHouse } from '../model';
@@ -10,6 +10,8 @@ import {
     CameraSource,
     Photo,
 } from "@capacitor/camera";
+import { people } from 'ionicons/icons'
+
 
 
 const Updated: React.FC = () => {
@@ -28,6 +30,7 @@ const Updated: React.FC = () => {
     var [lati, setLati] = useState('')
     var [long, setLong] = useState('')
     let arr14 = Array<string>();
+    var [arr, setArr] = useState(arr14)
 
 
 
@@ -73,7 +76,7 @@ const Updated: React.FC = () => {
             optional: optional,
             lati: lati,
             long: long,
-            arr14:arr14
+            arr14: arr14
         }
         await updateNewRent(updateNew)
     }
@@ -90,6 +93,9 @@ const Updated: React.FC = () => {
         setNote2(resultFromDB.note2)
         setPictureURL(URL.createObjectURL(resultFromDB.picBlob))
         setOptional(resultFromDB.optional)
+        setArr(resultFromDB.arr14.reverse())
+        setLati(resultFromDB.lati)
+        setLong(resultFromDB.long)
     }
 
     useEffect(() => {
@@ -147,7 +153,7 @@ const Updated: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">Furniture Types</IonText>
-                    <IonSelect value={funitureType} class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setFunitureType(e.detail.value!)}>
+                    <IonSelect value={funitureType} class="bre" interface="popover" interfaceOptions={options} onIonChange={e => setFunitureType(e.detail.value!)}>
                         <IonSelectOption value="Furnished" class="brown-option">Furnished</IonSelectOption>
                         <IonSelectOption value="Unfurnished">Unfurnished</IonSelectOption>
                         <IonSelectOption value="Part Furnished">Part Furnished</IonSelectOption>
@@ -156,7 +162,7 @@ const Updated: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">Rental condition</IonText>
-                    <IonSelect value={optional} class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setOptional(e.detail.value!)}>
+                    <IonSelect value={optional} class="bre1" interface="popover" interfaceOptions={options} onIonChange={e => setOptional(e.detail.value!)}>
                         <IonSelectOption value="Male only" class="brown-option">Male only</IonSelectOption>
                         <IonSelectOption value="Female only">Female only</IonSelectOption>
                         <IonSelectOption value="No animal">No animal</IonSelectOption>
@@ -164,7 +170,7 @@ const Updated: React.FC = () => {
                     </IonSelect>
                 </IonItem>
 
-                
+
 
 
                 <IonItem lines="none">
@@ -177,33 +183,27 @@ const Updated: React.FC = () => {
                     <IonInput value={name} class="login-text66" onIonChange={e => setName(e.detail.value!)}></IonInput>
                 </IonItem>
 
+                <IonItem  class ="lat" lines="none">
+                    <IonText>Latitude: </IonText>
+                    <IonInput class ="la">{lati}</IonInput>
+                </IonItem>
+                <IonItem  class = "lat" lines="none">
+                    <IonText>Longitude: </IonText>
+                    <IonText class = "long">{long}</IonText>
+                </IonItem>
+
 
 
                 <IonItem class="bui1" lines="none">
                     <IonItem lines="none">
                         <img src={pictureURL} width="160" height="120" />
                     </IonItem>
-                    <IonItem lines="none">
-                        <IonButton class="bui" shape="round" fill="outline" onClick={takePicture}>Select Picture</IonButton>
-                    </IonItem>
+
+                    <IonButton class="bui" shape="round" fill="outline" onClick={takePicture}>Select Picture</IonButton>
+
                 </IonItem>
 
 
-
-
-
-                <IonItem></IonItem>
-
-                <IonItem lines="none">
-                    <IonText class="textcre">See Comment</IonText>
-                </IonItem>
-
-
-
-                <IonItem lines="none">
-                    <IonText class="textcre">Comment</IonText>
-                    <IonInput disabled value={note2} class="ll" onIonChange={e => setNote2(e.detail.value!)}></IonInput>
-                </IonItem>
 
                 <IonItem lines="none">
                     <IonButton
@@ -225,6 +225,24 @@ const Updated: React.FC = () => {
                     >
                         Update</IonButton>
                 </IonItem>
+
+                <IonItem ></IonItem>
+
+                <IonItem lines="none">
+                    <IonText class="textcre">All comment here</IonText>
+                </IonItem>
+                <IonList>
+                    {arr.map(c =>
+                        <IonItem lines="none" >
+                            <IonButton color="light" class="nm1">
+                                <IonIcon class="nm" icon={people} size="small" slot="icon-only"></IonIcon>
+                            </IonButton>
+                            <IonText class="textcre">{c}</IonText>
+                        </IonItem>
+                    )}
+                </IonList>
+
+                <IonItem></IonItem>
 
             </IonContent>
         </IonPage>
