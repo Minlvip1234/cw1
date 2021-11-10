@@ -29,6 +29,8 @@ const Views: React.FC = () => {
     var [long, setLong] = useState('')
     let arr14 = Array<string>();
     var [arr, setArr] = useState(arr14)
+    var names = name.split(' ')
+    var names1 = names[names.length - 1]
 
     interface IdParam {
         id: string
@@ -93,7 +95,7 @@ const Views: React.FC = () => {
         fetchData();
     }, [])
 
-
+    
 
     return (
         <IonPage >
@@ -103,6 +105,7 @@ const Views: React.FC = () => {
                         <IonButtons slot="start">
                             <IonBackButton defaultHref="home" />
                         </IonButtons>
+                        <IonText>{names1 + `'s ` + propertytype}</IonText>
                     </IonToolbar>
                 </IonHeader>
 
@@ -133,7 +136,7 @@ const Views: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">Price per month</IonText>
-                    <IonInput disabled value={moneyRentPrice} class="login-text33" ></IonInput>
+                    <IonInput disabled value={moneyRentPrice +'$'} class="login-text33" ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
