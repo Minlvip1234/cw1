@@ -24,8 +24,9 @@ const View: React.FC = () => {
 
     async function searchh() {
         var result = await getAllRental() as RentHouse[]
+        
         if (searchText.trim().length > 0) {
-            setAllRental(result.filter(p => p.propertytype == searchText))
+            setAllRental(result.filter(p => p.propertytype.toLowerCase().includes(searchText.toLowerCase())))
         }
         else {
             setAllRental(result)
@@ -77,12 +78,12 @@ const View: React.FC = () => {
                 <IonList >
                     {allRental.map(c =>
                         <IonItem class="txt" lines="none" routerLink={'/Views/' + c.id} button key={c.id} >
-                            <IonItem lines="none">
-                                <img src={URL.createObjectURL(c.picBlob)} width="160" height="120" />
-                            </IonItem>
-                            <IonItem lines="none">
-                                <h6>{c.propertytype}</h6>
-                            </IonItem>
+                            <div><img src={URL.createObjectURL(c.picBlob)} width="160" height="120" /></div>
+                                
+                            
+                            <div><h6>{c.propertytype}</h6></div>
+                                
+                            
                         </IonItem>
                     )}
                 </IonList>

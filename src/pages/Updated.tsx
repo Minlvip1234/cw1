@@ -1,6 +1,6 @@
 import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
 import { trash } from 'ionicons/icons'
-import { deleteRental, updateNewRent, getRentalById } from '../databaseHandler';
+import { deleteRental, updateNewRent, getRentalById, update } from '../databaseHandler';
 import { RentHouse } from '../model';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
@@ -78,7 +78,8 @@ const Updated: React.FC = () => {
             long: long,
             arr14: arr14
         }
-        await updateNewRent(updateNew)
+        await update(updateNew)
+        window.location.href = 'Update'
     }
 
     async function fetchData() {
@@ -131,6 +132,10 @@ const Updated: React.FC = () => {
                 </IonHeader>
 
                 <IonItem lines="none">
+                    <IonText class="textcre">Update Form</IonText>
+                </IonItem>
+
+                <IonItem lines="none">
                     <IonText class="textcre">Property Type</IonText>
                     <IonInput class="login-text11" value={propertytype} onIonChange={e => setPropertytype(e.detail.value!)}></IonInput>
                 </IonItem>
@@ -149,6 +154,24 @@ const Updated: React.FC = () => {
                 <IonItem lines="none">
                     <IonText class="textcre">Price per month</IonText>
                     <IonInput value={moneyRentPrice} class="login-text33" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
+                </IonItem>
+
+                <IonItem lines="none">
+                    <IonText class="textcre">Name</IonText>
+                    <IonInput value={name} class="login-text66" onIonChange={e => setName(e.detail.value!)}></IonInput>
+                </IonItem>
+
+                <IonItem lines="none">
+                    <IonText class="textcre">Notes</IonText>
+                    <IonInput value={notes} class="login-text55" onIonChange={e => setNotes(e.detail.value!)}></IonInput>
+                </IonItem>
+
+
+
+                <IonItem></IonItem>
+
+                <IonItem lines="none">
+                    <IonText class="textcre">Optional</IonText>
                 </IonItem>
 
                 <IonItem lines="none">
@@ -171,27 +194,26 @@ const Updated: React.FC = () => {
                 </IonItem>
 
 
-
-
-                <IonItem lines="none">
-                    <IonText class="textcre">Notes</IonText>
-                    <IonInput value={notes} class="login-text55" onIonChange={e => setNotes(e.detail.value!)}></IonInput>
-                </IonItem>
+                <IonItem></IonItem>
 
                 <IonItem lines="none">
-                    <IonText class="textcre">Name</IonText>
-                    <IonInput value={name} class="login-text66" onIonChange={e => setName(e.detail.value!)}></IonInput>
+                    <IonText class="textcre">Location</IonText>
                 </IonItem>
 
-                <IonItem  class ="lat" lines="none">
+
+                <IonItem class="lat" lines="none">
                     <IonText>Latitude: </IonText>
-                    <IonInput class ="la">{lati}</IonInput>
+                    <IonInput class="la">{lati}</IonInput>
                 </IonItem>
-                <IonItem  class = "lat" lines="none">
+                <IonItem class="lat" lines="none">
                     <IonText>Longitude: </IonText>
-                    <IonText class = "long">{long}</IonText>
+                    <IonText class="long">{long}</IonText>
                 </IonItem>
+                <IonItem></IonItem>
 
+                <IonItem lines="none">
+                    <IonText class="textcre">Picture</IonText>
+                </IonItem>
 
 
                 <IonItem class="bui1" lines="none">

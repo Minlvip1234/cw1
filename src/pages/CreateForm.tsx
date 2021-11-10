@@ -38,11 +38,6 @@ const CreateForm: React.FC = () => {
   var [lati, setLati] = useState('')
   var [long, setLong] = useState('')
   let arr14 = Array<string>();
-  
-
-
-
-
 
   const history = useHistory()
   const options = {
@@ -191,14 +186,38 @@ const CreateForm: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
+
+        <IonItem lines="none">
+          <IonText class="geo">Notification</IonText>
+        </IonItem>
+
+        <IonItem lines="none">
+          <IonText class="textcre">(*): Required</IonText>
+        </IonItem>
+
+        <IonItem lines="none">
+          <IonText class="textcre">Property Type, Bedroom and name fill only characters</IonText>
+        </IonItem>
+
+        <IonItem lines="none">
+          <IonText class="textcre">Price fill only numbers</IonText>
+        </IonItem>
+
+        <IonItem></IonItem>
+        
+
+        <IonItem lines="none">
+          <IonText class="geo">Please fill in blank</IonText>
+        </IonItem>
+
         <IonItem lines="none">
           <IonText class="textcre">Property Type</IonText>
-          <IonInput placeholder="e.g. flat, house, bungalow" class="login-text1" onIonChange={e => setPropertytype(e.detail.value!)}></IonInput>
+          <IonInput placeholder="(*) e.g. flat, house, bungalow" class="login-text1" onIonChange={e => setPropertytype(e.detail.value!)}></IonInput>
         </IonItem>
 
         <IonItem lines="none">
           <IonText class="textcre">Bedsroom</IonText>
-          <IonInput placeholder="e.g. studio, one, two, etc" class="login-text2" onIonChange={e => setBedsroom(e.detail.value!)}></IonInput>
+          <IonInput placeholder="(*) e.g. studio, one, two, etc" class="login-text2" onIonChange={e => setBedsroom(e.detail.value!)}></IonInput>
         </IonItem>
 
         <IonItem lines="none">
@@ -209,20 +228,55 @@ const CreateForm: React.FC = () => {
 
         <IonItem lines="none">
           <IonText class="textcre">Price per month</IonText>
-          <IonInput placeholder="Price/Month .$" class="login-text3" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
+          <IonInput placeholder="(*) Price/Month .$" class="login-text3" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
+        </IonItem>
+
+        <IonItem lines="none">
+          <IonText class="textcre">Name</IonText>
+          <IonInput placeholder="(*) your full name here" class="login-text6" onIonChange={e => setName(e.detail.value!)}></IonInput>
+        </IonItem>
+
+        <IonItem lines="none">
+          <IonText class="textcre">Notes</IonText>
+          <IonInput placeholder="anything." class="login-text5" onIonChange={e => setNotes(e.detail.value!)}></IonInput>
+        </IonItem>
+
+
+
+
+        <IonItem></IonItem>
+
+
+        <IonItem lines="none">
+          <IonText class="geo">Optional (*)</IonText>
         </IonItem>
 
         <IonItem lines="none">
           <IonText class="textcre">Furniture Types</IonText>
-          <IonSelect class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setFunitureType(e.detail.value!)}>
+          <IonSelect class="bre" interface="popover" interfaceOptions={options} onIonChange={e => setFunitureType(e.detail.value!)}>
             <IonSelectOption value="Furnished" class="brown-option">Furnished</IonSelectOption>
             <IonSelectOption value="Unfurnished">Unfurnished</IonSelectOption>
             <IonSelectOption value="Part Furnished">Part Furnished</IonSelectOption>
           </IonSelect>
         </IonItem>
 
-        <IonItem  lines="none">
-          <IonButton class = "geo" color="primary" onClick={getLocation}>Get location</IonButton>
+        <IonItem lines="none">
+          <IonText class="textcre">Rental condition</IonText>
+          <IonSelect class="bre1" interface="popover" interfaceOptions={options} onIonChange={e => setOptional(e.detail.value!)}>
+            <IonSelectOption value="Male only" class="brown-option">Male only</IonSelectOption>
+            <IonSelectOption value="Female only">Female only</IonSelectOption>
+            <IonSelectOption value="No animal">No animal</IonSelectOption>
+            <IonSelectOption value="Full option">Full option</IonSelectOption>
+          </IonSelect>
+        </IonItem>
+
+        <IonItem></IonItem>
+        <IonItem lines="none">
+          <IonText class="geo">Location</IonText>
+        </IonItem>
+
+        <IonItem lines="none">
+          <IonButton class="geo" color="primary" onClick={getLocation}>Get location</IonButton>
         </IonItem>
 
         <IonItem class="lat" lines="none">
@@ -234,24 +288,9 @@ const CreateForm: React.FC = () => {
           <IonText class="long">{long}</IonText>
         </IonItem>
 
+        <IonItem></IonItem>
         <IonItem lines="none">
-          <IonText class="textcre">Rental condition</IonText>
-          <IonSelect class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setOptional(e.detail.value!)}>
-            <IonSelectOption value="Male only" class="brown-option">Male only</IonSelectOption>
-            <IonSelectOption value="Female only">Female only</IonSelectOption>
-            <IonSelectOption value="No animal">No animal</IonSelectOption>
-            <IonSelectOption value="Full option">Full option</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-
-        <IonItem lines="none">
-          <IonText class="textcre">Notes</IonText>
-          <IonInput placeholder="anything." class="login-text5" onIonChange={e => setNotes(e.detail.value!)}></IonInput>
-        </IonItem>
-
-        <IonItem lines="none">
-          <IonText class="textcre">Name</IonText>
-          <IonInput placeholder="your full name here" class="login-text6" onIonChange={e => setName(e.detail.value!)}></IonInput>
+          <IonText class="geo">Selcect Picture</IonText>
         </IonItem>
 
 
@@ -261,7 +300,7 @@ const CreateForm: React.FC = () => {
         </IonItem>
         <IonItem class="pim" lines="none">
           <img src={pictureURL} width="150" height="120" />
-          <IonButton class ="bui" shape="round" fill="outline" onClick={takePicture}>Select Picture</IonButton>
+          <IonButton class="bui" shape="round" fill="outline" onClick={takePicture}>Select Picture</IonButton>
         </IonItem>
 
 

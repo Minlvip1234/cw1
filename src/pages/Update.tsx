@@ -19,7 +19,7 @@ const Update: React.FC = () => {
     async function searchh() {
         var result = await getAllRental() as RentHouse[]
         if (searchText.trim().length > 0) {
-            setAllRental(result.filter(p => p.propertytype == searchText))
+            setAllRental(result.filter(p => p.propertytype.toLowerCase().includes(searchText.toLowerCase())))
         }
         else {
             setAllRental(result)

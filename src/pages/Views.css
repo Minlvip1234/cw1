@@ -71,6 +71,7 @@
     background-color: gray;
     border-radius: 5%;
     border-style: outset;
+    
 }
 
 ion-content.backgroundk
@@ -122,3 +123,9 @@ ion-content.backgroundk
     height: 25px;
     width: 25px;
 }
+
+.mf
+{
+    text-align: center;
+}
+

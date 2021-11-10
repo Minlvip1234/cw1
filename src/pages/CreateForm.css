@@ -145,6 +145,8 @@ ion-content.backgroundz
 
 
   .geo {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif; 
     margin: auto;
 
   }
@@ -156,6 +158,8 @@ ion-content.backgroundz
     margin-left: 10px;
       
   }
+
+ 
   
   
   

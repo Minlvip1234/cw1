@@ -111,6 +111,10 @@ const Views: React.FC = () => {
                     </IonRefresherContent>
                 </IonRefresher>
 
+                <IonItem lines = "none">
+                    <IonText class="textcre">View Form</IonText>
+                </IonItem>
+
                 <IonItem lines="none">
                     <IonText class="textcre">Property Type</IonText>
                     <IonInput disabled class="login-text11" value={propertytype} ></IonInput>
@@ -133,8 +137,8 @@ const Views: React.FC = () => {
                 </IonItem>
 
                 <IonItem lines="none">
-                    <IonText class="textcre">Funiture type</IonText>
-                    <IonInput disabled value={funitureType} class="login-text44" ></IonInput>
+                    <IonText class="textcre">Name</IonText>
+                    <IonInput disabled value={name} class="login-text66" ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
@@ -142,10 +146,28 @@ const Views: React.FC = () => {
                     <IonInput disabled value={notes} class="login-text55" ></IonInput>
                 </IonItem>
 
-                <IonItem lines="none">
-                    <IonText class="textcre">Name</IonText>
-                    <IonInput disabled value={name} class="login-text66" ></IonInput>
+                <IonItem></IonItem>
+
+
+                <IonItem lines = "none">
+                    <IonText class="textcre">Optional</IonText>
                 </IonItem>
+                
+
+                <IonItem lines="none">
+                    <IonText class="textcre">Funiture type</IonText>
+                    <IonInput disabled value={funitureType} class="login-text44" ></IonInput>
+                </IonItem>
+
+
+                <IonItem lines = "none">
+                    <IonText class="textcre">Rental condition</IonText>
+                    <IonInput disabled value={optional} class="bre1" ></IonInput>
+                </IonItem>
+
+
+                <IonItem></IonItem>
+               
 
                 <IonItem lines = "none">
                     <IonText class="textcre">Picture</IonText>
@@ -154,9 +176,9 @@ const Views: React.FC = () => {
                     </IonItem>
                 </IonItem>
 
-                <IonItem lines="none">
-                    <IonText class="textcre">Rental condition</IonText>
-                    <IonInput disabled value={optional} class="login-text77" ></IonInput>
+                <IonItem></IonItem>
+                <IonItem lines = "none">
+                    <IonText class="textcre">Location</IonText>
                 </IonItem>
 
                 <IonItem  class ="lat" lines="none">

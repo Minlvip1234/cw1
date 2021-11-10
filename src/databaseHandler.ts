@@ -53,6 +53,24 @@ export async function updateNewRent(Rents:RentHouse) {
 }
 
 
+export async function update(Rents:RentHouse) {
+    const db = await openDB(dbName,1)
+    var productDB = await db.get("Rent",Rents.id!) as RentHouse
+    productDB.propertytype = Rents.propertytype
+    productDB.bedsroom = Rents.bedsroom
+    productDB.dateOfBirth = Rents.dateOfBirth
+    productDB.moneyRentPrice = Rents.moneyRentPrice
+    productDB.notes= Rents.notes
+    productDB.funitureType = Rents.funitureType
+    productDB.name = Rents.name
+    productDB.note2 = Rents.note2
+    productDB.picBlob = Rents.picBlob
+    productDB.optional = Rents.optional
+
+    await db.put("Rent",productDB);
+}
+
+
 async function initDB() {
     const db = await openDB(dbName, 1, {
         upgrade(db) {
