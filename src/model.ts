@@ -9,5 +9,11 @@ export interface RentHouse{
     name:string,
     note2: string,
     picBlob: Blob,
-    optional: string
+    optional: string,
+    lati: string,
+    long: string,
+
+    arr14: string[]
+
+    
 }

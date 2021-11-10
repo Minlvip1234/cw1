@@ -25,6 +25,10 @@ const Updated: React.FC = () => {
     const [present] = useIonAlert();
     const [pictureURL, setPictureURL] = useState('assets/placeholder.jpg');
     const [optional, setOptional] = useState('')
+    var [lati, setLati] = useState('')
+    var [long, setLong] = useState('')
+    let arr14 = Array<string>();
+
 
 
 
@@ -66,7 +70,10 @@ const Updated: React.FC = () => {
             name: name,
             note2: note2,
             picBlob: fileContent,
-            optional: optional
+            optional: optional,
+            lati: lati,
+            long: long,
+            arr14:arr14
         }
         await updateNewRent(updateNew)
     }
@@ -139,7 +146,7 @@ const Updated: React.FC = () => {
                 </IonItem>
 
                 <IonItem lines="none">
-                    <IonLabel class="textcre">Furniture Types</IonLabel>
+                    <IonText class="textcre">Furniture Types</IonText>
                     <IonSelect value={funitureType} class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setFunitureType(e.detail.value!)}>
                         <IonSelectOption value="Furnished" class="brown-option">Furnished</IonSelectOption>
                         <IonSelectOption value="Unfurnished">Unfurnished</IonSelectOption>
@@ -148,7 +155,7 @@ const Updated: React.FC = () => {
                 </IonItem>
 
                 <IonItem lines="none">
-                    <IonLabel class="textcre">Rental condition</IonLabel>
+                    <IonText class="textcre">Rental condition</IonText>
                     <IonSelect value={optional} class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setOptional(e.detail.value!)}>
                         <IonSelectOption value="Male only" class="brown-option">Male only</IonSelectOption>
                         <IonSelectOption value="Female only">Female only</IonSelectOption>
@@ -156,6 +163,8 @@ const Updated: React.FC = () => {
                         <IonSelectOption value="Full option">Full option</IonSelectOption>
                     </IonSelect>
                 </IonItem>
+
+                
 
 
                 <IonItem lines="none">
@@ -168,7 +177,7 @@ const Updated: React.FC = () => {
                     <IonInput value={name} class="login-text66" onIonChange={e => setName(e.detail.value!)}></IonInput>
                 </IonItem>
 
-               
+
 
                 <IonItem class="bui1" lines="none">
                     <IonItem lines="none">

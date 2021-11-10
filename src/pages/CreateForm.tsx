@@ -12,6 +12,9 @@ import {
 import { useHistory } from 'react-router';
 import { RentHouse } from '../model';
 import ReactAudioPlayer from 'react-audio-player';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+
+
 
 const CreateForm: React.FC = () => {
   var myPlayer: ReactAudioPlayer | null
@@ -30,11 +33,30 @@ const CreateForm: React.FC = () => {
   var [arrayName, setAllRental] = useState(false)
   var [arrayName1, setAllRental1] = useState(false)
   var [arrayName2, setAllRental2] = useState(false)
+  var [arrayName3, setAllRental2] = useState(false)
+  const [position, setPosition] = useState<Geoposition>();
+  var [lati, setLati] = useState('')
+  var [long, setLong] = useState('')
+  let arr14 = Array<string>();
+  
+
+
+
+
 
   const history = useHistory()
   const options = {
     cssClass: 'my-custom-interface'
   };
+
+  const getLocation = async () => {
+    const position = await Geolocation.getCurrentPosition();
+    lati = position.coords.latitude.toString();
+    long = position.coords.longitude.toString();
+    setLati(lati);
+    setLong(long);
+    setPosition(position);
+  }
 
   async function takePicture() {
     const cameraPhoto = await Camera.getPhoto({
@@ -57,6 +79,15 @@ const CreateForm: React.FC = () => {
     var newarr = name.replace(/ /g, '.').split("");
     var prop = propertytype.replace(/ /g, '.').split("");
     var bed = bedsroom.replace(/ /g, '.').split("");
+    var pri = moneyRentPrice.replace(/ /g, '.').split("");
+
+
+    pri.forEach(element => {
+      if (isNaN(parseInt(element)) == true) {
+        arrayName3 = true
+        return arrayName
+      }
+    });
 
     newarr.forEach(element => {
       if (isNaN(parseInt(element)) == false) {
@@ -117,7 +148,7 @@ const CreateForm: React.FC = () => {
       navigator.vibrate(2500)
       return toast("You must choose 1 funished type")
     }
-    else if (isNaN(parseInt(moneyRentPrice))) {
+    else if (arrayName3 == true) {
       navigator.vibrate(2500)
       return toast("Price must be a numbers, please try again")
     }
@@ -134,7 +165,10 @@ const CreateForm: React.FC = () => {
         funitureType: funitureType,
         notes: notes,
         name: name,
-        note2: note2
+        note2: note2,
+        lati: lati,
+        long: long,
+        arr14: arr14
       }
 
       insertRental(newCus).then(() => {
@@ -179,7 +213,7 @@ const CreateForm: React.FC = () => {
         </IonItem>
 
         <IonItem lines="none">
-          <IonLabel class="textcre">Furniture Types</IonLabel>
+          <IonText class="textcre">Furniture Types</IonText>
           <IonSelect class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setFunitureType(e.detail.value!)}>
             <IonSelectOption value="Furnished" class="brown-option">Furnished</IonSelectOption>
             <IonSelectOption value="Unfurnished">Unfurnished</IonSelectOption>
@@ -187,8 +221,21 @@ const CreateForm: React.FC = () => {
           </IonSelect>
         </IonItem>
 
+        <IonItem  lines="none">
+          <IonButton color="primary" onClick={getLocation}>Get location</IonButton>
+        </IonItem>
+
+        <IonItem class="textcre" lines="none">
+          <IonText>Latitude: </IonText>
+          <IonText class="la">{lati}</IonText>
+        </IonItem>
+        <IonItem class="textcre" lines="none">
+          <IonText>Longitude: </IonText>
+          <IonText class="long">{long}</IonText>
+        </IonItem>
+
         <IonItem lines="none">
-          <IonLabel class="textcre">Rental condition</IonLabel>
+          <IonText class="textcre">Rental condition</IonText>
           <IonSelect class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setOptional(e.detail.value!)}>
             <IonSelectOption value="Male only" class="brown-option">Male only</IonSelectOption>
             <IonSelectOption value="Female only">Female only</IonSelectOption>
@@ -213,6 +260,9 @@ const CreateForm: React.FC = () => {
           <IonText class="textcre">Picture</IonText>
         </IonItem>
         <IonItem class="pim" lines="none">
+
+
+
 
           <img src={pictureURL} width="150" height="120" />
           <IonItem class="bui">

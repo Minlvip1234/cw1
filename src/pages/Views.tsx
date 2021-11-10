@@ -1,11 +1,15 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonPage, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
+import { RefresherEventDetail } from '@ionic/core';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonList, IonPage, IonRefresher, IonRefresherContent, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getRentalById, updateNewRent } from '../databaseHandler';
+import {  getRentalById, updateNewRent } from '../databaseHandler';
 import { RentHouse } from '../model';
 import './Views.css';
 
 
+interface a {
+    arr12: String[]
+}
 
 const Views: React.FC = () => {
     const [propertytype, setPropertytype] = useState('')
@@ -19,16 +23,26 @@ const Views: React.FC = () => {
     const [present] = useIonAlert();
     const [pictureURL, setPictureURL] = useState('assets/placeholder.jpg');
     const [optional, setOptional] = useState('')
+    var [lati, setLati] = useState('')
+    var [long, setLong] = useState('')
+    let arr14 = Array<string>();
 
+    var [arr, setArr] = useState(arr14)
+  
 
+    
+  
     interface IdParam {
         id: string
     }
     const { id } = useParams<IdParam>()
 
+    
+
     async function updateHandle() {
         const response = await fetch(pictureURL)
         const fileContent = await response.blob()
+
         const updateNew = {
             id: Number.parseInt(id),
             propertytype: propertytype,
@@ -40,10 +54,18 @@ const Views: React.FC = () => {
             name: name,
             note2: note2,
             picBlob: fileContent,
-            optional:optional
+            optional:optional,
+            lati:lati,
+            long:long,
+            arr14:arr14
         }
         await updateNewRent(updateNew)
+
+        console.log(arr14)
+       
     }
+
+  
 
     async function fetchData() {
         const resultFromDB = await getRentalById(Number.parseInt(id)) as RentHouse;
@@ -57,7 +79,19 @@ const Views: React.FC = () => {
         setPictureURL(URL.createObjectURL(resultFromDB.picBlob))
         setOptional(resultFromDB.optional)
         setFunitureType(resultFromDB.funitureType)
+        setLati(resultFromDB.lati)
+        setLong(resultFromDB.long)
+        setArr(resultFromDB.arr14)
     }
+
+    
+    function doRefresh(event: CustomEvent<RefresherEventDetail>) {
+        fetchData();
+        setTimeout(() => {
+            event.detail.complete();
+        }, 1500);
+    }
+
 
     useEffect(() => {
         fetchData();
@@ -76,14 +110,19 @@ const Views: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
 
+                <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
+                    <IonRefresherContent>
+                    </IonRefresherContent>
+                </IonRefresher>
+
                 <IonItem lines="none">
                     <IonText class="textcre">Property Type</IonText>
-                    <IonInput disabled class="login-text11" value={propertytype} onIonChange={e => setPropertytype(e.detail.value!)}></IonInput>
+                    <IonInput disabled class="login-text11" value={propertytype} ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
                     <IonText class="textcre">Bedsroom</IonText>
-                    <IonInput disabled class="login-text22" value={bedsroom} onIonChange={e => setBedsroom(e.detail.value!)}></IonInput>
+                    <IonInput disabled class="login-text22" value={bedsroom} ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
@@ -94,22 +133,22 @@ const Views: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">Price per month</IonText>
-                    <IonInput disabled value={moneyRentPrice} class="login-text33" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
+                    <IonInput disabled value={moneyRentPrice} class="login-text33" ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
                     <IonText class="textcre">Funiture type</IonText>
-                    <IonInput disabled value={funitureType} class="login-text44" onIonChange={e => setFunitureType(e.detail.value!)}></IonInput>
+                    <IonInput disabled value={funitureType} class="login-text44" ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
                     <IonText class="textcre">Notes</IonText>
-                    <IonInput disabled value={notes} class="login-text55" onIonChange={e => setNotes(e.detail.value!)}></IonInput>
+                    <IonInput disabled value={notes} class="login-text55" ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
                     <IonText class="textcre">Name</IonText>
-                    <IonInput disabled value={name} class="login-text66" onIonChange={e => setName(e.detail.value!)}></IonInput>
+                    <IonInput disabled value={name} class="login-text66" ></IonInput>
                 </IonItem>
 
                 <IonItem lines = "none">
@@ -121,7 +160,16 @@ const Views: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">Rental condition</IonText>
-                    <IonInput disabled value={optional} class="login-text77" onIonChange={e => setOptional(e.detail.value!)}></IonInput>
+                    <IonInput disabled value={optional} class="login-text77" ></IonInput>
+                </IonItem>
+
+                <IonItem  class ="textcre" lines="none">
+                    <IonText>Latitude: </IonText>
+                    <IonText class ="la">{lati}</IonText>
+                </IonItem>
+                <IonItem  class = "textcre" lines="none">
+                    <IonText>Longitude: </IonText>
+                    <IonText class = "long">{long}</IonText>
                 </IonItem>
 
 
@@ -131,10 +179,13 @@ const Views: React.FC = () => {
                     <IonText class="textcre">This is comment for viewer</IonText>
                 </IonItem>
 
+               
+
                 <IonItem lines="none">
                     <IonText class="textcre">Comment</IonText>
                     <IonInput placeholder="Comment here" class="ll" onIonChange={e => setNote2(e.detail.value!)}></IonInput>
                 </IonItem>
+               
 
 
 
@@ -164,6 +215,16 @@ const Views: React.FC = () => {
 
 
                 <IonItem></IonItem>
+                
+                <IonList >
+                    {arr.map(c =>
+                       <IonItem>
+                           <IonText>{c}</IonText>
+                       </IonItem>
+                    )}
+                </IonList>
+            
+             
 
 
             </IonContent>

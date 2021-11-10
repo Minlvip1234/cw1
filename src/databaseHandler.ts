@@ -12,10 +12,15 @@ export async function insertRental(Rents: RentHouse) {
     await db.put('Rent',Rents)
 }
 
+
+
 export async function getRentalById(id:number) {
     const db = await openDB(dbName,1);
     return await db.get("Rent",id)
 }
+
+
+
 
 export async function getAllRental() {
     const db = await openDB(dbName,1);
@@ -42,6 +47,7 @@ export async function updateNewRent(Rents:RentHouse) {
     productDB.note2 = Rents.note2
     productDB.picBlob = Rents.picBlob
     productDB.optional = Rents.optional
+    productDB.arr14.push(productDB.note2)
 
     await db.put("Rent",productDB);
 }

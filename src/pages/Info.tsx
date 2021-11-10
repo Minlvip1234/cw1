@@ -21,7 +21,7 @@ const Info: React.FC = () => {
                     <IonText class="teet1">Made by: Duong Duc Anh</IonText>
                 </IonItem>
                 <IonItem lines="none">
-                    <IonText class="teet1">ID: GCH18611</IonText>
+                    <IonText class="teet1">ID: 001201604</IonText>
 
                 </IonItem>
                 <IonItem lines="none">

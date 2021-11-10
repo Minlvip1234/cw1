@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonList, IonPage, IonRefresher, IonRefresherContent, IonSearchbar, IonText, IonToolbar } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonRefresher, IonRefresherContent, IonSearchbar, IonSelect, IonSelectOption, IonText, IonToolbar } from '@ionic/react';
 import { search } from 'ionicons/icons'
 import { getAllRental } from '../databaseHandler';
 import { RentHouse } from '../model';
@@ -7,7 +7,13 @@ import { RefresherEventDetail } from '@ionic/core';
 
 const View: React.FC = () => {
     const [searchText, setSearchText] = useState('');
+    const [choose, setChoose] = useState('');
     const [allRental, setAllRental] = useState<RentHouse[]>([]);
+
+    const options = {
+        cssClass: 'my-custom-interface'
+    };
+
 
     async function fetchData() {
 
@@ -25,6 +31,7 @@ const View: React.FC = () => {
             setAllRental(result)
         }
     }
+
 
     function doRefresh(event: CustomEvent<RefresherEventDetail>) {
         fetchData();
@@ -58,22 +65,27 @@ const View: React.FC = () => {
                     <IonRefresherContent>
                     </IonRefresherContent>
                 </IonRefresher>
-                {allRental &&
-                    
-                    <IonList>
-                        {allRental.map(c =>
-                            
-                            <IonItem  class = "txt" lines = "none" routerLink={'/Views/' + c.id} button key={c.id} >
-                                <IonItem lines = "none">
-                                    <img src={URL.createObjectURL(c.picBlob)} width="160" height="120" />
-                                </IonItem>
-                                <IonItem lines = "none">
-                                    <h6>{c.propertytype}</h6>
-                                </IonItem>
+
+                <IonItem lines="none">
+                    <IonLabel class="textcre">Rental condition</IonLabel>
+                    <IonSelect class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setChoose(e.detail.value!)}>
+                        <IonSelectOption value="propertytype" class="brown-option">Property Type</IonSelectOption>
+                        <IonSelectOption value="bedroom">Bedroom</IonSelectOption>
+                    </IonSelect>
+                </IonItem>
+
+                <IonList >
+                    {allRental.map(c =>
+                        <IonItem class="txt" lines="none" routerLink={'/Views/' + c.id} button key={c.id} >
+                            <IonItem lines="none">
+                                <img src={URL.createObjectURL(c.picBlob)} width="160" height="120" />
                             </IonItem>
-                        )}
-                    </IonList>
-                }
+                            <IonItem lines="none">
+                                <h6>{c.propertytype}</h6>
+                            </IonItem>
+                        </IonItem>
+                    )}
+                </IonList>
 
 
             </IonContent>
