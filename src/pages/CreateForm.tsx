@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonPage, IonSelect, IonSelectOption, IonText, IonToolbar, useIonAlert } from '@ionic/react';
+import { IonBackButton, IonButton, IonLabel,IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonPage, IonSelect, IonSelectOption, IonText, IonToolbar, useIonAlert } from '@ionic/react';
 import { useState } from 'react';
 import './CreateForm.css';
 import { getAllRental, insertRental } from '../databaseHandler';
@@ -207,35 +207,36 @@ const CreateForm: React.FC = () => {
           <IonText class="geo">Please fill in blank</IonText>
         </IonItem>
 
-        <IonItem lines="none">
-          <IonText class="textcre">Property Type</IonText>
-          <IonInput placeholder="(*) e.g. flat, house, bungalow" class="login-text1" onIonChange={e => setPropertytype(e.detail.value!)}></IonInput>
+        <IonItem lines ="none">
+        <IonLabel class = "hai" position="floating">Property Type</IonLabel>
+        <IonInput class = "hai" placeholder="(*) e.g. flat, house, bungalow"  onIonChange={e => setPropertytype(e.detail.value!)}></IonInput>
+
         </IonItem>
 
         <IonItem lines="none">
-          <IonText class="textcre">Bedsroom</IonText>
-          <IonInput placeholder="(*) e.g. studio, one, two, etc" class="login-text2" onIonChange={e => setBedsroom(e.detail.value!)}></IonInput>
+          <IonLabel class="hai" position= "floating">Bedsroom</IonLabel>
+          <IonInput placeholder="(*) e.g. studio, one, two, etc" class="hai" onIonChange={e => setBedsroom(e.detail.value!)}></IonInput>
         </IonItem>
 
         <IonItem lines="none">
-          <IonText class="textcre">Date and Time</IonText>
-          <IonDatetime class="textdate" value={dateOfBirth}
+          <IonText class="hai">Date</IonText>
+          <IonDatetime slot ="end" class="textdate" value={dateOfBirth}
             onIonChange={e => setDateOfBirth(e.detail.value!)}></IonDatetime>
         </IonItem>
 
         <IonItem lines="none">
-          <IonText class="textcre">Price per month</IonText>
-          <IonInput placeholder="(*) Price/Month .$" class="login-text3" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
+          <IonLabel position = "floating">Price</IonLabel>
+          <IonInput placeholder="(*) Price/Month .$" class="hai" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
         </IonItem>
 
         <IonItem lines="none">
-          <IonText class="textcre">Name</IonText>
-          <IonInput placeholder="(*) your full name here" class="login-text6" onIonChange={e => setName(e.detail.value!)}></IonInput>
+          <IonLabel position= "floating">Name</IonLabel>
+          <IonInput placeholder="(*) your full name here" class="hai" onIonChange={e => setName(e.detail.value!)}></IonInput>
         </IonItem>
 
         <IonItem lines="none">
-          <IonText class="textcre">Notes</IonText>
-          <IonInput placeholder="anything." class="login-text5" onIonChange={e => setNotes(e.detail.value!)}></IonInput>
+        <IonLabel position= "floating">Notes</IonLabel>
+          <IonInput placeholder="anything." class="hai" onIonChange={e => setNotes(e.detail.value!)}></IonInput>
         </IonItem>
 
 
@@ -273,7 +274,7 @@ const CreateForm: React.FC = () => {
         </IonItem>
 
         <IonItem lines="none">
-          <IonButton class="geo" color="primary" onClick={getLocation}>Get location</IonButton>
+          <IonButton class="geo1" color="primary" onClick={getLocation}>Get location</IonButton>
         </IonItem>
 
         <IonItem class="lat" lines="none">

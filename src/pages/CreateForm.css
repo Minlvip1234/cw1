@@ -57,7 +57,6 @@
 .textdate{
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif; 
-    margin-top: 11%;
     margin-left: 41px;
 }
 
@@ -144,6 +143,14 @@ ion-content.backgroundz
   }
 
 
+
+  ion-button.geo1 {
+    font-size: 15px;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif; 
+    margin: auto;
+
+  }
   .geo {
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif; 
@@ -159,7 +166,20 @@ ion-content.backgroundz
       
   }
 
- 
+
+  .hai
+  {
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif; 
+  }
+
+  .textdate1{
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif; 
+    margin-left: 41px;
+}
+
+
   
   
   

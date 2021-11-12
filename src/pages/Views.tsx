@@ -28,7 +28,7 @@ const Views: React.FC = () => {
     var [lati, setLati] = useState('')
     var [long, setLong] = useState('')
     let arr14 = Array<string>();
-    var [arr, setArr] = useState(arr14)
+    const [arr, setArr] = useState(arr14)
     var names = name.split(' ')
     var names1 = names[names.length - 1]
 
