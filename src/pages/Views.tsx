@@ -1,8 +1,8 @@
 import { RefresherEventDetail } from '@ionic/core';
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonList, IonPage, IonRefresher, IonRefresherContent, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
+import { IonAvatar, IonBackButton, IonBadge, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonRefresher, IonRefresherContent, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import {  getRentalById, updateNewRent } from '../databaseHandler';
+import { getRentalById, updateNewRent } from '../databaseHandler';
 import { RentHouse } from '../model';
 import './Views.css';
 import { people } from 'ionicons/icons'
@@ -37,7 +37,7 @@ const Views: React.FC = () => {
     }
     const { id } = useParams<IdParam>()
 
-    
+
 
     async function updateHandle() {
         const response = await fetch(pictureURL)
@@ -54,16 +54,21 @@ const Views: React.FC = () => {
             name: name,
             note2: note2,
             picBlob: fileContent,
-            optional:optional,
-            lati:lati,
-            long:long,
-            arr14:arr14
+            optional: optional,
+            lati: lati,
+            long: long,
+            arr14: arr14
         }
         await updateNewRent(updateNew)
-        
+        up()
     }
 
-  
+    async function up() {
+        const resultFromDB = await getRentalById(Number.parseInt(id)) as RentHouse;
+        setArr(resultFromDB.arr14.reverse())
+    }
+
+
 
     async function fetchData() {
         const resultFromDB = await getRentalById(Number.parseInt(id)) as RentHouse;
@@ -80,9 +85,10 @@ const Views: React.FC = () => {
         setLati(resultFromDB.lati)
         setLong(resultFromDB.long)
         setArr(resultFromDB.arr14.reverse())
+
     }
 
-    
+
     function doRefresh(event: CustomEvent<RefresherEventDetail>) {
         fetchData();
         setTimeout(() => {
@@ -95,7 +101,7 @@ const Views: React.FC = () => {
         fetchData();
     }, [])
 
-    
+
 
     return (
         <IonPage >
@@ -114,7 +120,7 @@ const Views: React.FC = () => {
                     </IonRefresherContent>
                 </IonRefresher>
 
-                <IonItem lines = "none">
+                <IonItem lines="none">
                     <IonText class="textcre">View Form</IonText>
                 </IonItem>
 
@@ -129,14 +135,14 @@ const Views: React.FC = () => {
                 </IonItem>
 
                 <IonItem lines="none">
-                    <IonText class="textcre">Date of Birth</IonText>
-                    <IonDatetime disabled class="textdate1" value={dateOfBirth}
+                    <IonText  class="textcre">Date</IonText>
+                    <IonDatetime displayFormat  ="YYYY, MMMM" disabled class="textdate1" value={dateOfBirth}
                         onIonChange={e => setDateOfBirth(e.detail.value!)}></IonDatetime>
                 </IonItem>
 
                 <IonItem lines="none">
                     <IonText class="textcre">Price per month</IonText>
-                    <IonInput disabled value={moneyRentPrice +'$'} class="login-text33" ></IonInput>
+                    <IonInput disabled value={moneyRentPrice + '$'} class="login-text33" ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">
@@ -152,10 +158,10 @@ const Views: React.FC = () => {
                 <IonItem></IonItem>
 
 
-                <IonItem lines = "none">
+                <IonItem lines="none">
                     <IonText class="textcre">Optional</IonText>
                 </IonItem>
-                
+
 
                 <IonItem lines="none">
                     <IonText class="textcre">Funiture type</IonText>
@@ -163,50 +169,50 @@ const Views: React.FC = () => {
                 </IonItem>
 
 
-                <IonItem lines = "none">
+                <IonItem lines="none">
                     <IonText class="textcre">Rental condition</IonText>
                     <IonInput disabled value={optional} class="bre1" ></IonInput>
                 </IonItem>
 
 
                 <IonItem></IonItem>
-               
 
-                <IonItem lines = "none">
+
+                <IonItem lines="none">
                     <IonText class="textcre">Picture</IonText>
-                    <IonItem class ="pic">
+                    <IonItem lines = "none" class="pic">
                         <img src={pictureURL} width="160" height="120" />
                     </IonItem>
                 </IonItem>
 
                 <IonItem></IonItem>
-                <IonItem lines = "none">
+                <IonItem lines="none">
                     <IonText class="textcre">Location</IonText>
                 </IonItem>
 
-                <IonItem  class ="lat" lines="none">
+                <IonItem class="lat" lines="none">
                     <IonText>Latitude: </IonText>
-                    <IonText class ="la">{lati}</IonText>
+                    <IonText class="la">{lati}</IonText>
                 </IonItem>
-                <IonItem  class = "lat" lines="none">
+                <IonItem class="lat" lines="none">
                     <IonText>Longitude: </IonText>
-                    <IonText class = "long">{long}</IonText>
+                    <IonText class="long">{long}</IonText>
                 </IonItem>
 
 
                 <IonItem></IonItem>
 
-                <IonItem lines = "none">
+                <IonItem lines="none">
                     <IonText class="textcre">This is comment for viewer</IonText>
                 </IonItem>
 
-               
+
 
                 <IonItem lines="none">
                     <IonText class="textcre">Comment</IonText>
                     <IonInput placeholder="Comment here" class="ll" onIonChange={e => setNote2(e.detail.value!)}></IonInput>
                 </IonItem>
-               
+
 
 
 
@@ -233,27 +239,27 @@ const Views: React.FC = () => {
                         Up</IonButton>
                 </IonItem>
 
-                
+
 
                 <IonItem ></IonItem>
-                
-                <IonItem lines = "none">
+
+                <IonItem lines="none">
                     <IonText class="textcre">All comment here</IonText>
+                    <IonBadge slot="end" class = "mo">{arr.length}</IonBadge>
+
                 </IonItem>
+
                 <IonList>
                     {arr.map(c =>
-                       <IonItem lines = "none" >
-                           <IonButton color="light" class="nm1">
-          <IonIcon class="nm" icon={people} size="small" slot="icon-only"></IonIcon>
-        </IonButton>
-                           <IonText class="textcre">{c}</IonText>
-                       </IonItem>
+                        <IonItem lines="none" >
+                            <IonAvatar class ="avatar">
+                                <IonIcon icon= {people}></IonIcon>
+                                </IonAvatar>
+                            <IonLabel class="hi">{c}</IonLabel>
+                        </IonItem>
                     )}
                 </IonList>
-            
-             <IonItem></IonItem>
-
-
+                <IonItem></IonItem>
             </IonContent>
         </IonPage>
 

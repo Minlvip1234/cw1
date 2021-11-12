@@ -98,7 +98,7 @@ ion-content.backgroundk
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif; 
     margin-top: 11%;
-    margin-left: 52px;
+    margin-left: 119px;
 }
 .long{
     font-size: 20px;
@@ -127,5 +127,21 @@ ion-content.backgroundk
 .mf
 {
     text-align: center;
+}
+
+
+.avatar
+{
+    margin-top: 9%;
+    margin-left: 5%;
+}
+.hi
+{
+    margin-left: -4%;
+}
+
+.mo
+{
+    margin-top: 10%;
 }
 

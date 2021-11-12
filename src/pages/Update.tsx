@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonList, IonPage, IonRefresher, IonRefresherContent, IonSearchbar, IonText, IonTitle, IonToolbar } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonList, IonPage, IonRefresher, IonRefresherContent, IonSearchbar, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar } from '@ionic/react';
 import './Home.css';
 import { search , reorderFour, build, helpCircle } from 'ionicons/icons'
 import { deleteRental, getAllRental, getRentalById } from '../databaseHandler';
@@ -11,20 +11,30 @@ const Update: React.FC = () => {
 
     const [searchText, setSearchText] = useState('');
     const [allRental, setAllRental] = useState<RentHouse[]>([]);
+    const [choose, setChoose] = useState('');
+
     async function fetchData() {
         const resultFromDB = await getAllRental();
-        setAllRental(resultFromDB);
-    }
+        console.log(choose)
 
-    async function searchh() {
-        var result = await getAllRental() as RentHouse[]
-        if (searchText.trim().length > 0) {
-            setAllRental(result.filter(p => p.propertytype.toLowerCase().includes(searchText.toLowerCase())))
+        if (searchText.trim().length > 0 && choose == "Pro") {
+            setAllRental(resultFromDB.filter(p => p.propertytype.toLowerCase().includes(searchText.toLowerCase())))
+        }
+        else if (choose == "Pri") {
+            setAllRental(resultFromDB.filter(p => p.moneyRentPrice.includes(searchText)))
+        }
+        else if (choose == "Name") {
+            setAllRental(resultFromDB.filter(p => p.name.toLowerCase().includes(searchText.toLowerCase())))
         }
         else {
-            setAllRental(result)
+            setAllRental(resultFromDB);
         }
+        
     }
+
+    const options = {
+        cssClass: 'my-custom-interface'
+    };
 
 
     function doRefresh(event: CustomEvent<RefresherEventDetail>) {
@@ -49,14 +59,23 @@ const Update: React.FC = () => {
                         <IonText class="head">
                             Update
                         </IonText>
-                        <IonButton slot ="end" onClick={searchh} ><IonIcon icon={search} ></IonIcon></IonButton>
+                       
                     </IonToolbar>
                 </IonHeader>
+                
 
 
         
                 <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="focus"></IonSearchbar>
-                <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
+                <IonItem lines="none">
+                    <IonText >Select option</IonText>
+                    <IonSelect slot="end" interface="popover" interfaceOptions={options} onIonChange={e => setChoose(e.detail.value!)}>
+                        <IonSelectOption value="Pro" class="brown-option">Property Type</IonSelectOption>
+                        <IonSelectOption value="Pri">Price</IonSelectOption>
+                        <IonSelectOption value="Name">Name</IonSelectOption>
+                    </IonSelect>
+                </IonItem>
+               <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
                     <IonRefresherContent>
                     </IonRefresherContent>
                 </IonRefresher>

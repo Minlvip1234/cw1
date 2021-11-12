@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet } from '@ionic/react';
+import { IonApp, IonIcon, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
 //import pages
@@ -31,24 +31,38 @@ import './theme/variables.css';
 import Update from './pages/Update';
 import Updated from './pages/Updated';
 import Info from './pages/Info';
+import { eye, water } from 'ionicons/icons';
 
 
 
 const App: React.FC = () => (
   <IonApp >
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/" component={Home} exact />
-        <Route path="/home" component={Home} exact />
-        <Route path="/CreateForm" component={CreateForm} exact />
-        <Route path="/View" component={View} exact />
-        <Route path="/Views/:id" component={Views} exact />
-        <Route path="/Update" component={Update} exact />
-        <Route path="/Updated/:id" component={Updated} exact />
-        <Route path="/Info" component={Info} exact />
+      <IonTabs>
 
-      </IonRouterOutlet>
-      
+        <IonRouterOutlet >
+
+          <Route path="/" component={Home} exact />
+          <Route path="/home" component={Home} exact />
+          <Route path="/CreateForm" component={CreateForm} exact />
+          <Route path="/View" component={View} exact />
+          <Route path="/Views/:id" component={Views} exact />
+          <Route path="/Update" component={Update} exact />
+          <Route path="/Updated/:id" component={Updated} exact />
+          <Route path="/Info" component={Info} exact />
+        </IonRouterOutlet>
+        <IonTabBar color="warning" slot="bottom">
+
+          <IonTabButton class ="r" tab="View" layout="icon-top" href="/View">
+            <IonIcon icon={eye} />
+            <IonLabel>View</IonLabel>
+          </IonTabButton>
+          <IonTabButton class ="t" tab="Info" layout= "icon-top" href="/Info">
+            <IonIcon icon={water} />
+            <IonLabel>Detail</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );

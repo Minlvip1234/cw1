@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
+import { IonAvatar, IonBackButton, IonBadge, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonSelect, IonSelectOption, IonText, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
 import { trash } from 'ionicons/icons'
 import { deleteRental, updateNewRent, getRentalById, update } from '../databaseHandler';
 import { RentHouse } from '../model';
@@ -11,6 +11,7 @@ import {
     Photo,
 } from "@capacitor/camera";
 import { people } from 'ionicons/icons'
+import { toast } from '../toast';
 
 
 
@@ -31,6 +32,13 @@ const Updated: React.FC = () => {
     var [long, setLong] = useState('')
     let arr14 = Array<string>();
     var [arr, setArr] = useState(arr14)
+    var names = name.split(' ')
+    var names1 = names[names.length - 1]
+    var [arrayName3, setAllRental2] = useState(false)
+    var [arrayName, setAllRental] = useState(false)
+  var [arrayName1, setAllRental1] = useState(false)
+  var [arrayName2, setAllRental2] = useState(false)
+
 
 
 
@@ -60,6 +68,62 @@ const Updated: React.FC = () => {
     }
 
     async function updateHandle() {
+        var newarr = name.replace(/ /g, '.').split("");
+        var prop = propertytype.replace(/ /g, '.').split("");
+        var bed = bedsroom.replace(/ /g, '.').split("");
+        var pri = moneyRentPrice.replace(/ /g, '.').split("");
+
+        pri.forEach(element => {
+            if (isNaN(parseInt(element)) == true) {
+              arrayName3 = true
+              return arrayName3
+            }
+          });
+          newarr.forEach(element => {
+            if (isNaN(parseInt(element)) == false) {
+              arrayName = true
+              return arrayName
+            }
+          });
+      
+          prop.forEach(element => {
+            if (isNaN(parseInt(element)) == false) {
+              arrayName1 = true
+              return arrayName1
+            }
+          });
+      
+          bed.forEach(element => {
+            if (isNaN(parseInt(element)) == false) {
+              arrayName2 = true
+              return arrayName2
+            }
+          });
+
+
+         if (arrayName3 == true) {
+            navigator.vibrate(1000)
+            return toast("Price must be a numbers, please try again")
+          }
+          else if (arrayName == true) {
+            arrayName = false
+            navigator.vibrate(1000)
+            return toast("Name must not have any number, please try again!")
+          }
+      
+          else if (arrayName1 == true) {
+            arrayName1 = false
+            navigator.vibrate(1000)
+            return toast("Property must not have any number, please try again!")
+          }
+      
+          else if (arrayName2 == true) {
+            arrayName2 = false
+            navigator.vibrate(1000)
+            return toast("Bedroom must not have any number, please try again!")
+          }
+          else{
+
         const response = await fetch(pictureURL)
         const fileContent = await response.blob()
         const updateNew = {
@@ -79,7 +143,7 @@ const Updated: React.FC = () => {
             arr14: arr14
         }
         await update(updateNew)
-        window.location.href = 'Update'
+        window.location.href = 'Update'}
     }
 
     async function fetchData() {
@@ -113,6 +177,8 @@ const Updated: React.FC = () => {
                         <IonButtons slot="start">
                             <IonBackButton defaultHref="home" />
                         </IonButtons>
+                        <IonText>{names1 + `'s ` + propertytype}</IonText>
+
                         <IonButton
                             onClick={() =>
                                 present({
@@ -252,14 +318,15 @@ const Updated: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">All comment here</IonText>
+                    <IonBadge slot="end" class="mo">{arr.length}</IonBadge>
                 </IonItem>
                 <IonList>
                     {arr.map(c =>
                         <IonItem lines="none" >
-                            <IonButton color="light" class="nm1">
-                                <IonIcon class="nm" icon={people} size="small" slot="icon-only"></IonIcon>
-                            </IonButton>
-                            <IonText class="textcre">{c}</IonText>
+                            <IonAvatar class="avatar">
+                                <IonIcon icon={people}></IonIcon>
+                            </IonAvatar>
+                            <IonLabel class="hi">{c}</IonLabel>
                         </IonItem>
                     )}
                 </IonList>

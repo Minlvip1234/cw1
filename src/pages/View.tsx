@@ -1,14 +1,15 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonRefresher, IonRefresherContent, IonSearchbar, IonSelect, IonSelectOption, IonText, IonToolbar } from '@ionic/react';
-import { search } from 'ionicons/icons'
+import { IonBackButton, IonButton, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonRefresher, IonRefresherContent, IonSearchbar, IonSelect, IonSelectOption, IonText, IonToolbar } from '@ionic/react';
 import { getAllRental } from '../databaseHandler';
 import { RentHouse } from '../model';
 import { useEffect, useState } from 'react';
 import { RefresherEventDetail } from '@ionic/core';
 
+
 const View: React.FC = () => {
     const [searchText, setSearchText] = useState('');
     const [choose, setChoose] = useState('');
     const [allRental, setAllRental] = useState<RentHouse[]>([]);
+    
 
     const options = {
         cssClass: 'my-custom-interface'
@@ -16,22 +17,57 @@ const View: React.FC = () => {
 
 
     async function fetchData() {
-
         const resultFromDB = await getAllRental();
+        setAllRental(resultFromDB);
+        
+    }
 
+    async function search(searchText: string)
+    {
+        if (choose === "Pro")
+        {
+            searchProp(searchText)
+        }
+        else if(choose === "Pri")
+        {
+            searchPri(searchText)
+        }
+        else if(choose === "Name")
+        {
+            searchNan(searchText)
+        }
+        else
+        {
+            searchAll(searchText)
+        }
+       
+        
+        
+    }
+
+    async function searchProp(searchText: string) {
+        const resultFromDB = await getAllRental();
+        const bro = resultFromDB.filter(p => p.propertytype.toLowerCase().includes(searchText.toLowerCase()))
+        setAllRental(bro);
+    }
+
+    async function searchPri(searchText: string) {
+        const resultFromDB = await getAllRental();
+        const bro = resultFromDB.filter(p => p.moneyRentPrice.toLowerCase().includes(searchText.toLowerCase()))
+        setAllRental(bro);
+    }
+
+    async function searchNan(searchText: string) {
+        const resultFromDB = await getAllRental();
+        const bro = resultFromDB.filter(p => p.name.toLowerCase().includes(searchText.toLowerCase()))
+        setAllRental(bro);
+    }
+
+    async function searchAll(searchText: string) {
+        const resultFromDB = await getAllRental();
         setAllRental(resultFromDB);
     }
 
-    async function searchh() {
-        var result = await getAllRental() as RentHouse[]
-        
-        if (searchText.trim().length > 0) {
-            setAllRental(result.filter(p => p.propertytype.toLowerCase().includes(searchText.toLowerCase())))
-        }
-        else {
-            setAllRental(result)
-        }
-    }
 
 
     function doRefresh(event: CustomEvent<RefresherEventDetail>) {
@@ -56,38 +92,41 @@ const View: React.FC = () => {
                         <IonText class="head">
                             View
                         </IonText>
-                        <IonButton slot="end" onClick={searchh} ><IonIcon icon={search} ></IonIcon></IonButton>
+
                     </IonToolbar>
                 </IonHeader>
-
-                <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} showCancelButton="focus"></IonSearchbar>
-
+                <IonItem lines="none">
+                    <IonSearchbar onIonChange={e => search(e.detail.value!)} showCancelButton="focus"></IonSearchbar>
+                </IonItem>
                 <IonRefresher slot="fixed" onIonRefresh={doRefresh}>
                     <IonRefresherContent>
                     </IonRefresherContent>
                 </IonRefresher>
 
                 <IonItem lines="none">
-                    <IonLabel class="textcre">Rental condition</IonLabel>
-                    <IonSelect class="textcre" interface="popover" interfaceOptions={options} onIonChange={e => setChoose(e.detail.value!)}>
-                        <IonSelectOption value="propertytype" class="brown-option">Property Type</IonSelectOption>
-                        <IonSelectOption value="bedroom">Bedroom</IonSelectOption>
+                    <IonText >Select option</IonText>
+                    <IonSelect slot="end" interface="popover" interfaceOptions={options} onIonChange={e => setChoose(e.detail.value!)}>
+                        <IonSelectOption value="Pro" class="brown-option">Property Type</IonSelectOption>
+                        <IonSelectOption value="Pri">Price</IonSelectOption>
+                        <IonSelectOption value="Name">Name</IonSelectOption>
+                        <IonSelectOption value="All">All Rental</IonSelectOption>
                     </IonSelect>
                 </IonItem>
 
                 <IonList >
                     {allRental.map(c =>
-                        <IonItem class="txt" lines="none" routerLink={'/Views/' + c.id} button key={c.id} >
-                            <div><img src={URL.createObjectURL(c.picBlob)} width="160" height="120" /></div>
-                                
-                            
-                            <div><h6>{c.propertytype}</h6></div>
-                                
-                            
-                        </IonItem>
+                        <IonCard color="tertiary" routerLink={'/Views/' + c.id} button key={c.id} >
+                            <img src={URL.createObjectURL(c.picBlob)} width="350" height="250" />
+                            <IonCardHeader>
+                                <IonCardSubtitle>Owner: {c.name}</IonCardSubtitle>
+                                <IonCardSubtitle>{c.dateOfBirth}</IonCardSubtitle>
+                                <IonCardTitle>{c.propertytype}</IonCardTitle>
+                                <IonCardTitle>Price: {c.moneyRentPrice + "$"}</IonCardTitle>
+                            </IonCardHeader>
+                        </IonCard>
                     )}
                 </IonList>
-
+                <IonItem></IonItem>
 
             </IonContent>
         </IonPage>

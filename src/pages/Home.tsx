@@ -1,29 +1,30 @@
-import { IonButton, IonContent, IonIcon, IonPage } from '@ionic/react';
+import {  IonContent, IonFab, IonFabButton, IonFabList, IonIcon,  IonPage } from '@ionic/react';
 import './Home.css';
-import { checkboxOutline, reorderFour, build, helpCircle } from 'ionicons/icons'
+import {  add, people, hammer } from 'ionicons/icons'
+import { RouteComponentProps } from 'react-router';
 
-const Home: React.FC = () => {
+
+const Home: React.FC  <RouteComponentProps> = (props: RouteComponentProps)=> {
   return (
     <IonPage >
       <IonContent fullscreen class="background" >
-
-        <IonButton routerLink='/CreateForm' color="light" class="createFormBut">
-          <IonIcon class="createForm" icon={checkboxOutline} size="large" slot="icon-only"></IonIcon>
-        </IonButton>
-
-        <IonButton routerLink='/View' color="light" class="createFormBut1">
-          <IonIcon class="createForm" icon={reorderFour} size="large" slot="icon-only"></IonIcon>
-        </IonButton>
-
-        <IonButton routerLink='Update' color="light" class="createFormBut2">
-          <IonIcon class="createForm" icon={build} size="large" slot="icon-only"></IonIcon>
-        </IonButton>
-
-        <IonButton routerLink="/Info" color="light" class="createFormBut3">
-          <IonIcon class="createForm" icon={helpCircle} size="large" slot="icon-only"></IonIcon>
-        </IonButton>
-
+      <IonFab horizontal="end" vertical="center" slot="fixed" edge>
+          <IonFabButton>
+            <IonIcon icon={add}/>
+          </IonFabButton>
+          <IonFabList>
+          <IonFabButton href = "CreateForm">
+            <IonIcon icon={people}/>
+          </IonFabButton>
+          <IonFabButton href = "Update">
+            <IonIcon icon={hammer}/>
+          </IonFabButton>
+          </IonFabList>
+        </IonFab>
+    
       </IonContent>
+
+
     </IonPage>
 
   );

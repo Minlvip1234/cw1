@@ -1,4 +1,4 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonLabel, IonPage, IonSelect, IonSelectOption, IonText, IonToolbar, useIonAlert } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonPage, IonSelect, IonSelectOption, IonText, IonToolbar, useIonAlert } from '@ionic/react';
 import { useState } from 'react';
 import './CreateForm.css';
 import { getAllRental, insertRental } from '../databaseHandler';
@@ -76,11 +76,10 @@ const CreateForm: React.FC = () => {
     var bed = bedsroom.replace(/ /g, '.').split("");
     var pri = moneyRentPrice.replace(/ /g, '.').split("");
 
-
     pri.forEach(element => {
       if (isNaN(parseInt(element)) == true) {
         arrayName3 = true
-        return arrayName
+        return arrayName3
       }
     });
 
@@ -129,8 +128,6 @@ const CreateForm: React.FC = () => {
       navigator.vibrate(1000)
       return toast("Bedroom must not have any number, please try again!")
     }
-
-
     else if (propertytype.trim().length == 0 || bedsroom.trim().length == 0 || moneyRentPrice.trim().length == 0) {
       navigator.vibrate(1000)
       return toast("Please fill all property, bedsroom and money")
@@ -204,7 +201,7 @@ const CreateForm: React.FC = () => {
         </IonItem>
 
         <IonItem></IonItem>
-        
+
 
         <IonItem lines="none">
           <IonText class="geo">Please fill in blank</IonText>
@@ -290,7 +287,7 @@ const CreateForm: React.FC = () => {
 
         <IonItem></IonItem>
         <IonItem lines="none">
-          <IonText class="geo">Selcect Picture</IonText>
+          <IonText class="geo">Select Picture</IonText>
         </IonItem>
 
 
@@ -324,6 +321,9 @@ const CreateForm: React.FC = () => {
         >
           Create
         </IonButton>
+        <IonItem></IonItem>
+
+
       </IonContent>
     </IonPage>
   );
