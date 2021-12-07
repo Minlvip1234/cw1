@@ -20,7 +20,7 @@ const Updated: React.FC = () => {
     const [propertytype, setPropertytype] = useState('')
     const [bedsroom, setBedsroom] = useState('')
     const [dateOfBirth, setDateOfBirth] = useState(new Date().toISOString())
-    const [moneyRentPrice, setMoneyRentPrice] = useState('')
+    const [monthPrice, setmonthPrice] = useState('')
     const [funitureType, setFunitureType] = useState('')
     const [notes, setNotes] = useState('')
     const [note2, setNote2] = useState('')
@@ -71,7 +71,7 @@ const Updated: React.FC = () => {
         var newarr = name.replace(/ /g, '.').split("");
         var prop = propertytype.replace(/ /g, '.').split("");
         var bed = bedsroom.replace(/ /g, '.').split("");
-        var pri = moneyRentPrice.replace(/ /g, '.').split("");
+        var pri = monthPrice.replace(/ /g, '.').split("");
 
         pri.forEach(element => {
             if (isNaN(parseInt(element)) == true) {
@@ -131,7 +131,7 @@ const Updated: React.FC = () => {
             propertytype: propertytype,
             bedsroom: bedsroom,
             dateOfBirth: dateOfBirth,
-            moneyRentPrice: moneyRentPrice,
+            monthPrice: monthPrice,
             funitureType: funitureType,
             notes: notes,
             name: name,
@@ -151,7 +151,7 @@ const Updated: React.FC = () => {
         setName(resultFromDB.name);
         setBedsroom(resultFromDB.bedsroom);
         setDateOfBirth(resultFromDB.dateOfBirth)
-        setMoneyRentPrice(resultFromDB.moneyRentPrice)
+        setmonthPrice(resultFromDB.monthPrice)
         setNotes(resultFromDB.notes)
         setFunitureType(resultFromDB.funitureType)
         setPropertytype(resultFromDB.propertytype)
@@ -219,7 +219,7 @@ const Updated: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">Price per month</IonText>
-                    <IonInput value={moneyRentPrice} class="login-text33" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
+                    <IonInput value={monthPrice} class="login-text33" onIonChange={e => setmonthPrice(e.detail.value!)}></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">

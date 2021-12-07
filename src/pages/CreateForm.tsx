@@ -18,14 +18,16 @@ import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 
 const CreateForm: React.FC = () => {
   var myPlayer: ReactAudioPlayer | null
+  
   const [propertytype, setPropertytype] = useState('')
   const [bedsroom, setBedsroom] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState(new Date().toISOString())
-  const [moneyRentPrice, setMoneyRentPrice] = useState('')
+  const [monthPrice, setmonthPrice] = useState('')
   const [funitureType, setFunitureType] = useState('')
+  const [optional, setOptional] = useState('')
   const [notes, setNotes] = useState('')
   const [name, setName] = useState('')
-  const [optional, setOptional] = useState('')
+  
   const [present] = useIonAlert();
   const [pictureURL, setPictureURL] = useState('assets/placeholder.jpg');
   const [note2, setNote2] = useState('')
@@ -74,7 +76,7 @@ const CreateForm: React.FC = () => {
     var newarr = name.replace(/ /g, '.').split("");
     var prop = propertytype.replace(/ /g, '.').split("");
     var bed = bedsroom.replace(/ /g, '.').split("");
-    var pri = moneyRentPrice.replace(/ /g, '.').split("");
+    var pri = monthPrice.replace(/ /g, '.').split("");
 
     pri.forEach(element => {
       if (isNaN(parseInt(element)) == true) {
@@ -128,7 +130,7 @@ const CreateForm: React.FC = () => {
       navigator.vibrate(1000)
       return toast("Bedroom must not have any number, please try again!")
     }
-    else if (propertytype.trim().length == 0 || bedsroom.trim().length == 0 || moneyRentPrice.trim().length == 0) {
+    else if (propertytype.trim().length == 0 || bedsroom.trim().length == 0 || monthPrice.trim().length == 0) {
       navigator.vibrate(1000)
       return toast("Please fill all property, bedsroom and money")
     }
@@ -153,7 +155,7 @@ const CreateForm: React.FC = () => {
         picBlob: fileContent,
         bedsroom: bedsroom,
         dateOfBirth: dateOfBirth,
-        moneyRentPrice: moneyRentPrice,
+        monthPrice: monthPrice,
         funitureType: funitureType,
         notes: notes,
         name: name,
@@ -226,7 +228,7 @@ const CreateForm: React.FC = () => {
 
         <IonItem lines="none">
           <IonLabel position = "floating">Price</IonLabel>
-          <IonInput placeholder="(*) Price/Month .$" class="hai" onIonChange={e => setMoneyRentPrice(e.detail.value!)}></IonInput>
+          <IonInput placeholder="(*) Price/Month .$" class="hai" onIonChange={e => setmonthPrice(e.detail.value!)}></IonInput>
         </IonItem>
 
         <IonItem lines="none">

@@ -3,7 +3,7 @@ export interface RentHouse{
     propertytype: string,
     bedsroom: string,
     dateOfBirth: string,
-    moneyRentPrice: string,
+    monthPrice: string,
     funitureType: string,
     notes: string,
     name:string,

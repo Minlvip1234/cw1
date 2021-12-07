@@ -21,7 +21,7 @@ const Update: React.FC = () => {
             setAllRental(resultFromDB.filter(p => p.propertytype.toLowerCase().includes(searchText.toLowerCase())))
         }
         else if (choose == "Pri") {
-            setAllRental(resultFromDB.filter(p => p.moneyRentPrice.includes(searchText)))
+            setAllRental(resultFromDB.filter(p => p.monthPrice.includes(searchText)))
         }
         else if (choose == "Name") {
             setAllRental(resultFromDB.filter(p => p.name.toLowerCase().includes(searchText.toLowerCase())))

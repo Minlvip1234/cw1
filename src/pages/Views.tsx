@@ -17,7 +17,7 @@ const Views: React.FC = () => {
     const [propertytype, setPropertytype] = useState('')
     const [bedsroom, setBedsroom] = useState('')
     const [dateOfBirth, setDateOfBirth] = useState(new Date().toISOString())
-    const [moneyRentPrice, setMoneyRentPrice] = useState('')
+    const [monthPrice, setmonthPrice] = useState('')
     const [funitureType, setFunitureType] = useState('')
     const [notes, setNotes] = useState('')
     const [name, setName] = useState('')
@@ -48,7 +48,7 @@ const Views: React.FC = () => {
             propertytype: propertytype,
             bedsroom: bedsroom,
             dateOfBirth: dateOfBirth,
-            moneyRentPrice: moneyRentPrice,
+            monthPrice: monthPrice,
             funitureType: funitureType,
             notes: notes,
             name: name,
@@ -75,7 +75,7 @@ const Views: React.FC = () => {
         setName(resultFromDB.name);
         setBedsroom(resultFromDB.bedsroom);
         setDateOfBirth(resultFromDB.dateOfBirth)
-        setMoneyRentPrice(resultFromDB.moneyRentPrice)
+        setmonthPrice(resultFromDB.monthPrice)
         setNotes(resultFromDB.notes)
         setPropertytype(resultFromDB.propertytype)
         setNote2(resultFromDB.note2)
@@ -142,7 +142,7 @@ const Views: React.FC = () => {
 
                 <IonItem lines="none">
                     <IonText class="textcre">Price per month</IonText>
-                    <IonInput disabled value={moneyRentPrice + '$'} class="login-text33" ></IonInput>
+                    <IonInput disabled value={monthPrice + '$'} class="login-text33" ></IonInput>
                 </IonItem>
 
                 <IonItem lines="none">

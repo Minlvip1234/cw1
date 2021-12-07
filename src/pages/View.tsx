@@ -53,7 +53,7 @@ const View: React.FC = () => {
 
     async function searchPri(searchText: string) {
         const resultFromDB = await getAllRental();
-        const bro = resultFromDB.filter(p => p.moneyRentPrice.toLowerCase().includes(searchText.toLowerCase()))
+        const bro = resultFromDB.filter(p => p.monthPrice.toLowerCase().includes(searchText.toLowerCase()))
         setAllRental(bro);
     }
 
@@ -121,7 +121,7 @@ const View: React.FC = () => {
                                 <IonCardSubtitle>Owner: {c.name}</IonCardSubtitle>
                                 <IonCardSubtitle>{c.dateOfBirth}</IonCardSubtitle>
                                 <IonCardTitle>{c.propertytype}</IonCardTitle>
-                                <IonCardTitle>Price: {c.moneyRentPrice + "$"}</IonCardTitle>
+                                <IonCardTitle>Price: {c.monthPrice + "$"}</IonCardTitle>
                             </IonCardHeader>
                         </IonCard>
                     )}

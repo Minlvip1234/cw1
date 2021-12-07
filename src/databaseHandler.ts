@@ -40,7 +40,7 @@ export async function updateNewRent(Rents:RentHouse) {
     productDB.propertytype = Rents.propertytype
     productDB.bedsroom = Rents.bedsroom
     productDB.dateOfBirth = Rents.dateOfBirth
-    productDB.moneyRentPrice = Rents.moneyRentPrice
+    productDB.monthPrice = Rents.monthPrice
     productDB.notes= Rents.notes
     productDB.funitureType = Rents.funitureType
     productDB.name = Rents.name
@@ -59,7 +59,7 @@ export async function update(Rents:RentHouse) {
     productDB.propertytype = Rents.propertytype
     productDB.bedsroom = Rents.bedsroom
     productDB.dateOfBirth = Rents.dateOfBirth
-    productDB.moneyRentPrice = Rents.moneyRentPrice
+    productDB.monthPrice = Rents.monthPrice
     productDB.notes= Rents.notes
     productDB.funitureType = Rents.funitureType
     productDB.name = Rents.name
